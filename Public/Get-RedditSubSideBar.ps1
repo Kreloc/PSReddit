@@ -11,6 +11,8 @@ function Get-RedditSubSideBar {
 
     .NOTES
         Function added by Kreloc on 4/18/2017
+
+        Does not work, comes back as 400 Bad Request, not sure why
     #>
     [CmdletBinding()]
     param (
