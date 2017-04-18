@@ -1,13 +1,13 @@
-function Get-RedditAccountKarma {
+function Get-RedditAccountPrefs {
     <#
     .SYNOPSIS
-        Gets a breakdown of karma for reddit account module is authorized with.
+        Gets the preference settings for account module is authorized with.
     .DESCRIPTION
-        Gets a breakdown of karma for reddit account module is authorized with.
-        Uses the me/karma endpoint of Reddit API.
+        Gets the preference settings for reddit account module is authorized with.
+        Uses the me/prefs endpoint of Reddit API.
     .EXAMPLE
-        Get-RedditAccountKarma
-        Gets a breakdown of account Karma, using sr(subreddit), comment_karma, and link_karma as returned properties.
+        Get-RedditAccountPrefs
+         Gets the preference settings for account module is authorized with.
 
     .NOTES
         Added by Kreloc on 4/18/2017
@@ -28,10 +28,10 @@ function Get-RedditAccountKarma {
     
     process {
         # TODO - Use a $BaseURI script variable of https://oAuth.reddit.com/api/v1
-        $uri = 'https://oAuth.reddit.com/api/v1/me/karma'
+        $uri = 'https://oAuth.reddit.com/api/v1/me/prefs'
         $response = (Invoke-RestMethod $uri -Headers @{"Authorization" = "bearer $accessToken"})
         # No formatting, not sure its necessary for this
-        $response.data
+        $response 
     }
     
     end {
