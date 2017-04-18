@@ -27,7 +27,7 @@ function Get-RedditSubListing {
             $response.data.children | ForEach-Object {
                 $_.data | Select title, selfText, id, score, author, permalink, url, created_utc, num_comments, ups, downs
             }
-
+            # Notes about data returned in above result
             # $test.data.children[0].data
             # selfText, id, score, author, permalink, url, created_utc, num_comments, ups, downs
         }
