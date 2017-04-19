@@ -3,8 +3,7 @@
     Gets information about the currently logged in user
 .Description
     After you've connected using Connect-RedditAccount, you can use this cmdlet to get information about the currently logged in user
-.PARAMETER redditSession
-    An optional session to use (like that returned from Connect-RedditSession)
+
 .Example
 Get-RedditAccount
 
@@ -26,15 +25,7 @@ https://github.com/1RedOne/PSReddit
 function Get-RedditAccount
 {
 [CmdletBinding()]
-Param (
-    [Parameter(
-        Position = 1,
-        Mandatory = $false,
-        ValueFromPipelineByPropertyName = $true
-        )]
-    [Alias("Link")]
-    $accessToken=$Global:PSReddit_accessToken
-    )
+Param ()
     
     
     $defaultDisplaySet = 'ID','name','Created Date','comment_karma','link_karma','gold_credits'
@@ -44,8 +35,9 @@ Param (
     $PSStandardMembers = [System.Management.Automation.PSMemberInfo[]]@($defaultDisplayPropertySet)
     
     $uri = 'https://oAuth.reddit.com/api/v1/me'
-    try {$response = (Invoke-RestMethod $uri -Headers @{"Authorization" = "bearer $accessToken"}) }
-   catch{write-warning "Authentication failed, we should do something here"}
+    $response = Invoke-RedditApi -uri $uri
+#     try {$response = (Invoke-RestMethod $uri -Headers @{"Authorization" = "bearer $accessToken"}) }
+#    catch{write-warning "Authentication failed, we should do something here"}
     
     $origin = New-Object -Type DateTime -ArgumentList 1970, 1, 1, 0, 0, 0, 0
     $created = $origin.AddSeconds($response.created)

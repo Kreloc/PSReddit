@@ -17,19 +17,12 @@ function Get-RedditSubListing {
     #>
     [CmdletBinding()]
     param (
-        [Parameter(Position=1, Mandatory=$false, ValueFromPipelineByPropertyName=$true)]
+        [Parameter(Position=0, Mandatory=$false, ValueFromPipelineByPropertyName=$true)]
         [Alias("r","Subreddit")]
         [string[]]
         $Name = 'all',
-        [Parameter(
-            Position = 0,
-            Mandatory = $false,
-            ValueFromPipelineByPropertyName = $true
-            )]
-        [Alias("Link")]
-        $accessToken=$Global:PSReddit_accessToken,
         # Parameter help description
-        [Parameter(Position=2, Mandatory=$false, ValueFromPipelineByPropertyName=$true)]
+        [Parameter(Position=1, Mandatory=$false, ValueFromPipelineByPropertyName=$true)]
         [ValidateSet("hot","new","random","rising","top","controversial")] 
         [String]
         $Type = "hot"
@@ -43,7 +36,7 @@ function Get-RedditSubListing {
         foreach ($sub in $Name) {
             $uri = "https://oAuth.reddit.com/r/$sub/$Type"
             Write-Verbose "Sending a uri of $($uri)"
-            $response = (Invoke-RestMethod $uri -Headers @{"Authorization" = "bearer $accessToken"} -ErrorAction STOP)
+            $response = Invoke-RedditApi -uri $uri
             # TODO: Add formatting instead of piping to Select Object
             $response.data.children | ForEach-Object {
                 $_.data | Select title, selfText, id, score, author, permalink, url, created_utc, num_comments, ups, downs

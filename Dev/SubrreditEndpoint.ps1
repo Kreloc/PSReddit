@@ -120,13 +120,10 @@ function Get-RedditSubAbout {
 function Get-RedditSubRecommendation {
     [CmdletBinding()]
     param (
-        [Parameter(Position=1, Mandatory=$false, ValueFromPipelineByPropertyName=$true)]
+        [Parameter(Position=0, Mandatory=$false, ValueFromPipelineByPropertyName=$true)]
         [Alias("r","Subreddit")]
-        [string[]]
-        $Name = 'all',
-        [Parameter(Position = 0, Mandatory = $false, ValueFromPipelineByPropertyName = $true)]
-        [Alias("Link")]
-        $accessToken = $Global:PSReddit_accessToken        
+        [string]
+        $Name = 'all'      
     )
     
     begin {
@@ -194,17 +191,10 @@ function Get-RedditSubSideBar {
     #>
     [CmdletBinding()]
     param (
-        [Parameter(Position=1, Mandatory=$false, ValueFromPipelineByPropertyName=$true)]
+        [Parameter(Position=0, Mandatory=$false, ValueFromPipelineByPropertyName=$true)]
         [Alias("r","Subreddit")]
         [string[]]
-        $Name = 'all',
-        [Parameter(
-            Position = 0,
-            Mandatory = $false,
-            ValueFromPipelineByPropertyName = $true
-            )]
-        [Alias("Link")]
-        $accessToken=$Global:PSReddit_accessToken
+        $Name = 'all'
     )
     
     begin {
@@ -215,7 +205,7 @@ function Get-RedditSubSideBar {
         foreach ($sub in $Name) {
             $uri = "https://oAuth.reddit.com/r/$sub/sidebar"
             Write-Verbose "Sending a uri of $($uri)"
-            $response = (Invoke-RestMethod $uri -Headers @{"Authorization" = "bearer $accessToken"} -ErrorAction STOP)
+            $response = Invoke-RedditApi -uri $uri
             # TODO: Add formatting instead of piping to Select Object
             $response.data.children | ForEach-Object {
                 $_.data | Select title, selfText, id, score, author, permalink, url, created_utc, num_comments, ups, downs
@@ -234,19 +224,12 @@ function Get-RedditSubSideBar {
 function Get-RedditSubsUser {
     [CmdletBinding()]
     param (
-        [Parameter(Position=1, Mandatory=$false, ValueFromPipelineByPropertyName=$true)]
+        [Parameter(Position=0, Mandatory=$false, ValueFromPipelineByPropertyName=$true)]
         [Alias("r","Subreddit")]
         [string[]]
         $Name = 'all',
-        [Parameter(
-            Position = 0,
-            Mandatory = $false,
-            ValueFromPipelineByPropertyName = $true
-            )]
-        [Alias("Link")]
-        $accessToken=$Global:PSReddit_accessToken,
         # Parameter help description
-        [Parameter(Position=2, Mandatory=$false, ValueFromPipelineByPropertyName=$true)]
+        [Parameter(Position=1, Mandatory=$false, ValueFromPipelineByPropertyName=$true)]
         [ValidateSet("subscriber","contributor","moderator")] 
         [String]
         $Type = "subscriber"                
@@ -258,7 +241,8 @@ function Get-RedditSubsUser {
     process {
         $uri = "https://oAuth.reddit.com/subreddits/mine/$Type"
         Write-Verbose "Sending a uri of $($uri)"
-        $response = (Invoke-RestMethod $uri -Headers @{"Authorization" = "bearer $accessToken"} -ErrorAction STOP)        
+        $response = Invoke-RedditApi -uri $uri
+        $response       
     }
     
     end {
@@ -285,19 +269,12 @@ function Get-RedditSubListing {
     #>
     [CmdletBinding()]
     param (
-        [Parameter(Position=1, Mandatory=$false, ValueFromPipelineByPropertyName=$true)]
+        [Parameter(Position=0, Mandatory=$false, ValueFromPipelineByPropertyName=$true)]
         [Alias("r","Subreddit")]
         [string[]]
         $Name = 'all',
-        [Parameter(
-            Position = 0,
-            Mandatory = $false,
-            ValueFromPipelineByPropertyName = $true
-            )]
-        [Alias("Link")]
-        $accessToken=$Global:PSReddit_accessToken,
         # Parameter help description
-        [Parameter(Position=2, Mandatory=$false, ValueFromPipelineByPropertyName=$true)]
+        [Parameter(Position=1, Mandatory=$false, ValueFromPipelineByPropertyName=$true)]
         [ValidateSet("hot","new","random","rising","top","controversial")] 
         [String]
         $Type = "hot"
@@ -311,7 +288,7 @@ function Get-RedditSubListing {
         foreach ($sub in $Name) {
             $uri = "https://oAuth.reddit.com/r/$sub/$Type"
             Write-Verbose "Sending a uri of $($uri)"
-            $response = (Invoke-RestMethod $uri -Headers @{"Authorization" = "bearer $accessToken"} -ErrorAction STOP)
+            $response = Invoke-RedditApi -uri $uri
             # TODO: Add formatting instead of piping to Select Object
             $response.data.children | ForEach-Object {
                 $_.data | Select title, selfText, id, score, author, permalink, url, created_utc, num_comments, ups, downs

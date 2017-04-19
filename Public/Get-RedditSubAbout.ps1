@@ -9,22 +9,24 @@ function Get-RedditSubAbout {
         Get-RedditSubAbout -Name "PowerShell"
         Gets the about information for the subreddit PowerShell.
 
+    .EXAMPLE
+        $res = Get-RedditSubAbout -Name "PowerShell" -Type moderators
+        $res.data.children
+
     .NOTES
         Function added by Kreloc on 4/19/2017
     #>
     [CmdletBinding()]
     param (
-        [Parameter(Position=1, Mandatory=$false, ValueFromPipelineByPropertyName=$true)]
+        [Parameter(Position=0, Mandatory=$false, ValueFromPipelineByPropertyName=$true)]
         [Alias("r","Subreddit")]
         [string[]]
         $Name = 'all',
-        [Parameter(
-            Position = 0,
-            Mandatory = $false,
-            ValueFromPipelineByPropertyName = $true
-            )]
-        [Alias("Link")]
-        $accessToken=$Global:PSReddit_accessToken
+        # Parameter help description
+        [Parameter(Position=1, Mandatory=$false, ValueFromPipelineByPropertyName=$true)]
+        [ValidateSet("banned","muted","wikibanned","contributors","wikicontributors","moderators","rules","about")] 
+        [String]
+        $Type = "about"        
     )
     
     begin {
@@ -33,20 +35,28 @@ function Get-RedditSubAbout {
     process {
         
         foreach ($sub in $Name) {
-            $uri = "https://oAuth.reddit.com/r/$sub/about"
+            If($Type -eq "about")
+            {
+                $uri = "https://oAuth.reddit.com/r/$sub/about"
+            }
+            else 
+            {
+                $uri = "https://oAuth.reddit.com/r/$sub/about/$Type"
+            }
             Write-Verbose "Sending a uri of $($uri)"
-            try {
-                $response = (Invoke-RestMethod $uri -Headers @{"Authorization" = "bearer $accessToken"} -ErrorAction STOP)                
-            }
-            catch {
-                # Expand this catch for the different errors returned
-                Write-Warning "The last attempt against the Reddit API failed. May need to regenerate API token"
-            }
-
+            $response = Invoke-RedditApi -uri $uri
             # TODO: Add formatting instead of piping to Select Object
             # $response
-            $response | ForEach-Object {
-                $_.data | Select title, public_description, id, accounts_active, subscribers
+            # simple change to allow results from other points after /about
+            If($type -eq "about")
+            {
+                $response | ForEach-Object {
+                    $_.data | Select title, public_description, id, accounts_active, subscribers
+                }
+            }
+            else 
+            {
+                $response    
             }
         }
     }

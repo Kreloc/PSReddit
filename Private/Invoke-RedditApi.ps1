@@ -33,7 +33,11 @@ function Invoke-RedditApi {
             If($_.Exception -match 401)
             {
                 Write-Warning "The last attempt against the Reddit API failed. May need to regenerate API token"
-            }            
+            }
+            If($_.Exception -match 500)
+            {
+                Write-Warning "There was an error at the other end. Try again later"
+            }           
         }
         $response        
     }
