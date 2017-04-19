@@ -73,6 +73,15 @@ function Invoke-RedditApi {
 # function Search-RedditSub 
 
 
+# GET /subreddits/wherereadrss support
+# → /subreddits/popular
+# → /subreddits/new
+# → /subreddits/gold
+# → /subreddits/default
+
+# function Get-RedditSubList
+
+
 
 # get /r/subreddit/<new,hot,etc>
 # function Get-RedditSubListing 
