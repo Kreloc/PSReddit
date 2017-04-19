@@ -54,5 +54,5 @@ Param (
 
     $response.PSObject.TypeNames.Insert(0,'PSReddit.User')
     $response | Add-Member MemberSet PSStandardMembers $PSStandardMembers
-    
+   
 }
