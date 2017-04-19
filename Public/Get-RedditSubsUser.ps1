@@ -19,7 +19,9 @@ function Get-RedditSubsUser {
         $uri = "https://oAuth.reddit.com/subreddits/mine/$Type"
         Write-Verbose "Sending a uri of $($uri)"
         $response = Invoke-RedditApi -uri $uri
-        $response       
+        $response.data.children | ForEach-Object {
+            $_.data
+        }   
     }
     
     end {

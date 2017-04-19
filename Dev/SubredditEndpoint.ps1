@@ -66,5 +66,13 @@ function Invoke-RedditApi {
 # get /subreddits/mine/where
 # function Get-RedditSubsUser 
 
+# GET [/r/subreddit]/sticky
+# Function Not made
+
+# GET /subreddits/search
+# function Search-RedditSub 
+
+
+
 # get /r/subreddit/<new,hot,etc>
 # function Get-RedditSubListing 
