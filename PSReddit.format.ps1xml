@@ -25,6 +25,10 @@
                             <ListItem>
                                 <PropertyName>title</PropertyName>
                             </ListItem>
+                            <ListItem>
+                                <Label>Comments</Label>
+                                <PropertyName>num_comments</PropertyName>
+                            </ListItem>
                         </ListItems>
                     </ListEntry>
                 </ListEntries>
