@@ -22,29 +22,39 @@
     $configDir = "$Env:AppData\WindowsPowerShell\Modules\PSReddit\0.1\Config.ps1xml"
     $refreshToken = "$Env:AppData\WindowsPowerShell\Modules\PSReddit\0.1\Config.Refresh.ps1xml"
 
+    If(Test-Path ($configDir))
+    {
+        Try
+        {
+            #Import the config
+            $password = Import-Clixml -Path $configDir -ErrorAction STOP | ConvertTo-SecureString
+            
+        }
+        catch {
+        Write-Warning "Corrupt Password file found, rerun with -Force to fix this"
+        }
+        
+        If(Test-Path $refreshToken)
+        {
+            Try
+            {
+                #Import the config
+                
+                $refreshToken = Import-Clixml -Path $refreshToken -ErrorAction STOP | ConvertTo-SecureString
+            }
+            catch {
+            Write-Warning "Corrupt refresh token file found, rerun with -Force to fix this"
+            }
+        }
+        else {
+            Write-Warning "Please run Connect-RedditAccount with your ClientID, SecretID, and RedirectURI as parameters to genereate a token."
+        }
+            
+        if ($password){Get-DecryptedValue -inputObj $password -name PSReddit_accessToken}
+        if($refreshToken){Get-DecryptedValue -inputObj $refreshToken -name PSReddit_refreshToken}
+    }
 
-    Try
-    {
-        #Import the config
-        $password = Import-Clixml -Path $configDir -ErrorAction STOP | ConvertTo-SecureString
-        
-     }
-    catch {
-    Write-Warning "Corrupt Password file found, rerun with -Force to fix this"
-    }
-    
-    Try
-    {
-        #Import the config
-        
-        $refreshToken = Import-Clixml -Path $refreshToken -ErrorAction STOP | ConvertTo-SecureString
-     }
-    catch {
-    Write-Warning "Corrupt refresh token file found, rerun with -Force to fix this"
-    }
-           
-    if ($password){Get-DecryptedValue -inputObj $password -name PSReddit_accessToken}
-    if($refreshToken){Get-DecryptedValue -inputObj $refreshToken -name PSReddit_refreshToken}
+
 
     
 
