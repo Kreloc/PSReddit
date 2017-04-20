@@ -4,7 +4,11 @@ function Invoke-RedditApi {
         $uri,
         [Parameter(Position = 0, Mandatory = $false, ValueFromPipelineByPropertyName = $true)]
         [Alias("Link")]
-        $accessToken=$Global:PSReddit_accessToken
+        $accessToken=$Global:PSReddit_accessToken,
+        [Parameter(Position=1, Mandatory=$false, ValueFromPipelineByPropertyName=$true)]
+        [ValidateSet("Get","Patch","Post","Put","Delete")] 
+        [String]
+        $Method = "Get"          
     )
     
     begin {
@@ -13,7 +17,13 @@ function Invoke-RedditApi {
     process {
         Write-Verbose "Sending a uri of $($uri)"
         try {
-            $response = (Invoke-RestMethod $uri -Headers @{"Authorization" = "bearer $accessToken"} -ErrorAction STOP)                
+            If($Method -eq "Get")
+            {
+                $response = (Invoke-RestMethod $uri -Headers @{"Authorization" = "bearer $accessToken"} -ErrorAction STOP)
+            }
+            else {
+                $response = (Invoke-RestMethod $uri -Headers @{"Authorization" = "bearer $accessToken"} -Method $Method -ErrorAction STOP)
+            }
         }
         catch {
             # Expand this catch for the different errors returned
