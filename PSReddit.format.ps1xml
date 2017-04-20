@@ -6,44 +6,29 @@
             <ViewSelectedBy>
                 <TypeName>PSReddit.Link</TypeName>
             </ViewSelectedBy>
-            <TableControl>
-                <TableHeaders>
-                    <TableColumnHeader>
-                        <Width>5</Width>
-                    </TableColumnHeader>
-                    <TableColumnHeader>
-                        <Width>14</Width>
-                    </TableColumnHeader>
-                    <TableColumnHeader>
-                        <Width>18</Width>
-                    </TableColumnHeader>
-                    <TableColumnHeader>
-                        <Width>5</Width>
-                    </TableColumnHeader>
-                    <TableColumnHeader/>
-                </TableHeaders>
-                <TableRowEntries>
-                    <TableRowEntry>
-                        <TableColumnItems>
-                            <TableColumnItem>
+            <ListControl>
+                <ListEntries>
+                    <ListEntry>
+                        <ListItems>
+                            <ListItem>
                                 <PropertyName>id</PropertyName>
-                            </TableColumnItem>
-                            <TableColumnItem>
+                            </ListItem>
+                            <ListItem>
                                 <PropertyName>subreddit</PropertyName>
-                            </TableColumnItem>
-                            <TableColumnItem>
+                            </ListItem>
+                            <ListItem>
                                 <PropertyName>author</PropertyName>
-                            </TableColumnItem>
-                            <TableColumnItem>
+                            </ListItem>
+                            <ListItem>
                                 <PropertyName>score</PropertyName>
-                            </TableColumnItem>
-                            <TableColumnItem>
+                            </ListItem>
+                            <ListItem>
                                 <PropertyName>title</PropertyName>
-                            </TableColumnItem>
-                        </TableColumnItems>
-                    </TableRowEntry>
-                </TableRowEntries>
-            </TableControl>
+                            </ListItem>
+                        </ListItems>
+                    </ListEntry>
+                </ListEntries>
+            </ListControl>
         </View>
 
         <View>
@@ -51,76 +36,52 @@
             <ViewSelectedBy>
                 <TypeName>PSReddit.Comment</TypeName>
             </ViewSelectedBy>
-            <TableControl>
-                <TableHeaders>
-                    <TableColumnHeader>
-                        <Width>7</Width>
-                    </TableColumnHeader>
-                    <TableColumnHeader>
-                        <Width>18</Width>
-                    </TableColumnHeader>
-                    <TableColumnHeader>
-                        <Width>5</Width>
-                    </TableColumnHeader>
-                    <TableColumnHeader/>
-                </TableHeaders>
-                <TableRowEntries>
-                    <TableRowEntry>
-                        <TableColumnItems>
-                            <TableColumnItem>
+            <ListControl>
+                <ListEntries>
+                    <ListEntry>
+                        <ListItems>
+                            <ListItem>
                                 <PropertyName>id</PropertyName>
-                            </TableColumnItem>
-                            <TableColumnItem>
+                            </ListItem>
+                            <ListItem>
                                 <PropertyName>author</PropertyName>
-                            </TableColumnItem>
-                            <TableColumnItem>
+                            </ListItem>
+                            <ListItem>
                                 <PropertyName>Score</PropertyName>
-                            </TableColumnItem>
-                            <TableColumnItem>
+                            </ListItem>
+                            <ListItem>
                                 <PropertyName>body</PropertyName>
-                            </TableColumnItem>
-                        </TableColumnItems>
-                    </TableRowEntry>
-                </TableRowEntries>
-            </TableControl>
+                            </ListItem>
+                        </ListItems>
+                    </ListEntry>
+                </ListEntries>
+            </ListControl>
         </View>
         <View>
             <Name>PSReddit.User</Name>
             <ViewSelectedBy>
                 <TypeName>PSReddit.User</TypeName>
             </ViewSelectedBy>
-            <TableControl>
-                <TableHeaders>
-                    <TableColumnHeader>
-                        <Width>7</Width>
-                    </TableColumnHeader>
-                    <TableColumnHeader>
-                        <Width>18</Width>
-                    </TableColumnHeader>
-                    <TableColumnHeader>
-                        <Width>5</Width>
-                    </TableColumnHeader>
-                    <TableColumnHeader/>
-                </TableHeaders>
-                <TableRowEntries>
-                    <TableRowEntry>
-                        <TableColumnItems>
-                            <TableColumnItem>
+            <ListControl>
+                <ListEntries>
+                    <ListEntry>
+                        <ListItems>
+                            <ListItem>
                                 <PropertyName>name</PropertyName>
-                            </TableColumnItem>
-                            <TableColumnItem>
+                            </ListItem>
+                            <ListItem>
                                 <PropertyName>created</PropertyName>
-                            </TableColumnItem>
-                            <TableColumnItem>
+                            </ListItem>
+                            <ListItem>
                                 <PropertyName>comment_karma</PropertyName>
-                            </TableColumnItem>
-                            <TableColumnItem>
+                            </ListItem>
+                            <ListItem>
                                 <PropertyName>link_karma</PropertyName>
-                            </TableColumnItem>
-                        </TableColumnItems>
-                    </TableRowEntry>
-                </TableRowEntries>
-            </TableControl>
+                            </ListItem>
+                        </ListItems>
+                    </ListEntry>
+                </ListEntries>
+            </ListControl>
         </View>
 
         <View>
@@ -128,88 +89,58 @@
             <ViewSelectedBy>
                 <TypeName>PSReddit.Listing</TypeName>
             </ViewSelectedBy>
-            <TableControl>
-                <TableHeaders>
-                    <TableColumnHeader>
-                        <Width>7</Width>
-                    </TableColumnHeader>
-                    <TableColumnHeader>
-                        <Width>18</Width>
-                    </TableColumnHeader>
-                    <TableColumnHeader>
-                        <Width>29</Width>
-                    </TableColumnHeader>
-                    <TableColumnHeader>
-                    </TableColumnHeader>
-                    <TableColumnHeader>
-                    </TableColumnHeader>
-                </TableHeaders>
-                <TableRowEntries>
-                    <TableRowEntry>
-                        <TableColumnItems>
-                            <TableColumnItem>
+            <ListControl>
+                <ListEntries>
+                    <ListEntry>
+                        <ListItems>
+                            <ListItem>
                                 <PropertyName>id</PropertyName>
-                            </TableColumnItem>
-                            <TableColumnItem>
+                            </ListItem>
+                            <ListItem>
                                 <PropertyName>title</PropertyName>
-                            </TableColumnItem>
-                            <TableColumnItem>
+                            </ListItem>
+                            <ListItem>
                                 <PropertyName>public_description</PropertyName>
-                            </TableColumnItem>
-                            <TableColumnItem>
+                            </ListItem>
+                            <ListItem>
                                 <PropertyName>subscribers</PropertyName>
-                            </TableColumnItem>
-                            <TableColumnItem>
+                            </ListItem>
+                            <ListItem>
                                 <PropertyName>display_name_prefixed</PropertyName>
-                            </TableColumnItem>
-                        </TableColumnItems>
-                    </TableRowEntry>
-                </TableRowEntries>
-            </TableControl>
+                            </ListItem>
+                        </ListItems>
+                    </ListEntry>
+                </ListEntries>
+            </ListControl>
         </View>
         <View>
             <Name>PSReddit.Message</Name>
             <ViewSelectedBy>
                 <TypeName>PSReddit.Message</TypeName>
             </ViewSelectedBy>
-            <TableControl>
-                <TableHeaders>
-                    <TableColumnHeader>
-                        <Width>7</Width>
-                    </TableColumnHeader>
-                    <TableColumnHeader>
-                        <Width>18</Width>
-                    </TableColumnHeader>
-                    <TableColumnHeader>
-                        <Width>29</Width>
-                    </TableColumnHeader>
-                    <TableColumnHeader>
-                    </TableColumnHeader>
-                    <TableColumnHeader>
-                    </TableColumnHeader>
-                </TableHeaders>
-                <TableRowEntries>
-                    <TableRowEntry>
-                        <TableColumnItems>
-                            <TableColumnItem>
+            <ListControl>
+                <ListEntries>
+                    <ListEntry>
+                        <ListItems>
+                            <ListItem>
                                 <PropertyName>id</PropertyName>
-                            </TableColumnItem>
-                            <TableColumnItem>
+                            </ListItem>
+                            <ListItem>
                                 <PropertyName>subreddit_name_prefixed</PropertyName>
-                            </TableColumnItem>
-                            <TableColumnItem>
+                            </ListItem>
+                            <ListItem>
                                 <PropertyName>subject</PropertyName>
-                            </TableColumnItem>
-                            <TableColumnItem>
+                            </ListItem>
+                            <ListItem>
                                 <PropertyName>author</PropertyName>
-                            </TableColumnItem>
-                            <TableColumnItem>
+                            </ListItem>
+                            <ListItem>
                                 <PropertyName>score</PropertyName>
-                            </TableColumnItem>
-                        </TableColumnItems>
-                    </TableRowEntry>
-                </TableRowEntries>
-            </TableControl>
+                            </ListItem>
+                        </ListItems>
+                    </ListEntry>
+                </ListEntries>
+            </ListControl>
         </View>        
     </ViewDefinitions>
 </Configuration>
