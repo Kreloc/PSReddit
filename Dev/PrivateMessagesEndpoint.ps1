@@ -90,3 +90,4 @@
 # sr_detail	
 # (optional) expand subreddits
 # Above comes back as 403, forbidden - Needed to add more permissions to Connect-RedditAccount function
+# function Get-RedditInbox 
