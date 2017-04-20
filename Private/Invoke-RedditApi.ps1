@@ -42,7 +42,7 @@ function Invoke-RedditApi {
             }
             If($_.Exception -match 401)
             {
-                Write-Warning "The last attempt against the Reddit API failed. May need to regenerate API token"
+                Write-Warning "The last attempt against the Reddit API failed. May need to regenerate API token using Connect-RedditAccount -Force"
             }
             If($_.Exception -match 500)
             {
