@@ -28,8 +28,8 @@ function Get-RedditSubList {
     process {
         $uri = "https://oAuth.reddit.com/subreddits/$Type"
         $response = Invoke-RedditApi -uri $uri
-        $res.data.children | ForEach-Object {
-            $_.data
+        $response.data.children | ForEach-Object {
+            $_.data | ForEach-Object { $_.PSObject.TypeNames.Insert(0,'PSReddit.Listing'); $_  }
         }
 
     }

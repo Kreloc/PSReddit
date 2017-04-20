@@ -9,7 +9,7 @@
             </ScriptMethod>
             <ScriptMethod>
                 <Name>OpenUrl</Name>
-                <Script>(New-Object -com Shell.Application).Open($this.url)</Script>
+                <Script>Start-Process $this.url</Script>
             </ScriptMethod>
         </Members>
     </Type>
@@ -24,4 +24,15 @@
             </ScriptProperty>
         </Members>
     </Type>
+    <Type>
+        <Name>PSReddit.Listing</Name>
+        <Members>
+            <ScriptMethod>
+                <Name>OpenUrl</Name>
+                <Script>
+                Start-Process "www.reddit.com$($this.url)"
+                </Script>
+            </ScriptMethod>
+        </Members>
+    </Type>    
 </Types> 
