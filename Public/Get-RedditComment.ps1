@@ -9,6 +9,9 @@
     "https://www.reddit.com/r/redditdev/comments/3i9psm/how_can_i_find_the_id_of_the_original_post_in_a/" | Get-RedditComment
 .EXAMPLE
     Get-RedditPost -Name PowerShell | Select-Object -First 1 | Get-RedditComment
+.EXAMPLE
+    Get-RedditSubListing -Name PowerShell -OutVariable PowerShellPosts | Select-Object -First 3 | Get-RedditComment -OutVariable Comments
+    $comments
 #>
 function Get-RedditComment
 {

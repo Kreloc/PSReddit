@@ -22,4 +22,5 @@
 # → /api/v1/me/blocked
 # This endpoint is a listing.
 # Does not product different output than Get-RedditAccountPrefs
+# Above was fixed by giving app more permissions than originally set
 

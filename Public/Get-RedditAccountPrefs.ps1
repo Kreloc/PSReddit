@@ -13,14 +13,24 @@ function Get-RedditAccountPrefs {
         Added by Kreloc on 4/18/2017
     #>
     [CmdletBinding()]
-        param ()
+        param (
+        [Parameter(Position=0, Mandatory=$false, ValueFromPipelineByPropertyName=$true)]
+        [ValidateSet("friends","blocked","messaging","trusted","prefs")] 
+        [String]
+        $Type = "prefs"               
+        )
     
     begin {
     }
     
     process {
         # TODO - Use a $BaseURI script variable of https://oAuth.reddit.com/api/v1
-        $uri = 'https://oAuth.reddit.com/api/v1/me/prefs'
+        If($Type -eq "prefs") {
+            $uri = 'https://oAuth.reddit.com/api/v1/me/prefs'
+        }
+        else {
+            $uri = "https://oAuth.reddit.com/api/v1/me/prefs/$Type"
+        }
         $response = Invoke-RedditApi -uri $uri
         # No formatting, not sure its necessary for this
         $response 

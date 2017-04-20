@@ -12,8 +12,16 @@ function Get-RedditSubListing {
         Get-RedditSubListing -Name "PowerShell" -Type controversial
         Gets the controversial listing result for the subreddit PowerShell.
 
+    .EXAMPLE
+        Get-RedditSubListing -Name "PowerShell" -Type new | Select -First 1 | Get-RedditComment -OutVariable Comments 
+        $Comments
+
+        Gets the new posts listing from the PowerShell subreddit and selects the fist one, which is piped
+        to Get-RedditComment to get the comments on that post. Those Comments are stored in a variable named Comments.
+
     .NOTES
         Function added by Kreloc on 4/18/2017
+        Performs same function as Get-RedditPost
     #>
     [CmdletBinding()]
     param (
