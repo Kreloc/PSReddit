@@ -10,7 +10,7 @@ function Get-RedditInbox {
     begin {
         $uri = "https://oAuth.reddit.com/message/$Type"
         $response = Invoke-RedditApi -uri $uri
-        $res.data.children | ForEach-Object {
+        $response.data.children | ForEach-Object {
             $_.data                
         } 
     }

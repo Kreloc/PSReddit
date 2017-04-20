@@ -17,13 +17,9 @@ function Get-RedditComment
 {
 [CmdletBinding()]
 Param (
-    [Parameter(
-        Position = 1,
-        Mandatory = $true,
-        ValueFromPipeline = $true,
-        ValueFromPipelineByPropertyName = $true
-        )]
-    [Alias("Link", "Name")]
+    [Parameter(Position = 0, Mandatory = $true, ValueFromPipeline = $true,
+        ValueFromPipelineByPropertyName = $true)]
+    # [Alias("Link", "Name")]
     [string]
     $id
     )

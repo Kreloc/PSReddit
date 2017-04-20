@@ -13,15 +13,7 @@ function Get-RedditAccountTrophy {
         Added by Kreloc on 4/18/2017
     #>
     [CmdletBinding()]
-        param (
-        [Parameter(
-            Position = 1,
-            Mandatory = $false,
-            ValueFromPipelineByPropertyName = $true
-            )]
-        [Alias("Link")]
-        $accessToken=$Global:PSReddit_accessToken     
-    )
+        param ()
     
     begin {
     }
@@ -29,7 +21,7 @@ function Get-RedditAccountTrophy {
     process {
         # TODO - Use a $BaseURI script variable of https://oAuth.reddit.com/api/v1
         $uri = 'https://oAuth.reddit.com/api/v1/me/trophies'
-        $response = (Invoke-RestMethod $uri -Headers @{"Authorization" = "bearer $accessToken"})
+        $response = Invoke-RedditApi -uri $uri
         # No formatting, not sure its necessary for this
         $response.data.trophies | ForEach-Object {
             $_.data

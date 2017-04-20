@@ -16,17 +16,10 @@ function Get-RedditSubSideBar {
     #>
     [CmdletBinding()]
     param (
-        [Parameter(Position=1, Mandatory=$false, ValueFromPipelineByPropertyName=$true)]
+        [Parameter(Position=0, Mandatory=$false, ValueFromPipelineByPropertyName=$true)]
         [Alias("r","Subreddit")]
         [string[]]
-        $Name = 'all',
-        [Parameter(
-            Position = 0,
-            Mandatory = $false,
-            ValueFromPipelineByPropertyName = $true
-            )]
-        [Alias("Link")]
-        $accessToken=$Global:PSReddit_accessToken
+        $Name = 'all'
     )
     
     begin {
