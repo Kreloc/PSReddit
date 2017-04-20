@@ -51,7 +51,13 @@
         If($response.success -eq $True)
         {
             Write-Verbose "Post successfuly made to $Subreddit with a a title of $Title"
-            $response
+            # $response
+            $id = (($response.jquery | Where {$_.SyncRoot -match "$Subreddit"}).SyncRoot[-1] -split "/")[-3]
+            $props = @{Id=$id 
+                       Posted=$true
+                       Subreddit=$Subreddit
+                      }
+            New-Object -TypeName psobject -Property $props
         }
         else {
             Write-Verbose "Post was not made to $Subreddit"
