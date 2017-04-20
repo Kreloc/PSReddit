@@ -27,7 +27,7 @@ function Search-RedditSub {
         $uri = "https://oAuth.reddit.com/subreddits/search?q=$Filter"
         $response = Invoke-RedditApi -uri $uri
         $response.data.children | ForEach-Object {
-            $_.data
+            $_.data | ForEach-Object { $_.PSObject.TypeNames.Insert(0,'PSReddit.Listing'); $_  }
         }
     }
     
