@@ -2,7 +2,7 @@
 <Configuration>
     <ViewDefinitions>
         <View>
-            <Name>PowerReddit.Link</Name>
+            <Name>PSReddit.Link</Name>
             <ViewSelectedBy>
                 <TypeName>PSReddit.Link</TypeName>
             </ViewSelectedBy>

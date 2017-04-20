@@ -45,9 +45,10 @@ function Get-RedditSubListing {
             $uri = "https://oAuth.reddit.com/r/$sub/$Type"
             Write-Verbose "Sending a uri of $($uri)"
             $response = Invoke-RedditApi -uri $uri
-            # TODO: Add formatting instead of piping to Select Object
+            
             $response.data.children | ForEach-Object {
-                $_.data | Select title, selfText, id, score, author, permalink, url, created_utc, num_comments, ups, downs
+                # $_.data | Select title, selfText, id, score, author, permalink, url, created_utc, num_comments, ups, downs
+                $_.data | ForEach-Object { $_.PSObject.TypeNames.Insert(0,'PSReddit.Link'); $_ }
             }
             # Notes about data returned in above result
             # $test.data.children[0].data

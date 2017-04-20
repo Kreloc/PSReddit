@@ -53,6 +53,6 @@ Param (
 
         # Comments have a type 't1' in Reddit API
         $comments = $listings | ForEach-Object { $_.data.children } | Where-Object kind -eq 't1' | Select-Object -Expand data
-        $comments | ForEach-Object { $_.PSObject.TypeNames.Insert(0,'PowerReddit.Comment'); $_ }
+        $comments | ForEach-Object { $_.PSObject.TypeNames.Insert(0,'PSReddit.Comment'); $_ }
     }
 }

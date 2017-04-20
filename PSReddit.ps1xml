@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Types>
     <Type>
-        <Name>PowerReddit.Link</Name>
+        <Name>PSReddit.Link</Name>
         <Members>
             <ScriptMethod>
                 <Name>GetComments</Name>
@@ -14,7 +14,7 @@
         </Members>
     </Type>
     <Type>
-        <Name>PowerReddit.Comment</Name>
+        <Name>PSReddit.Comment</Name>
         <Members>
             <ScriptProperty>
                 <Name>score</Name>
