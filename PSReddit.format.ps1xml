@@ -123,7 +123,7 @@
             </TableControl>
         </View>
 
-                <View>
+        <View>
             <Name>PSReddit.Listing</Name>
             <ViewSelectedBy>
                 <TypeName>PSReddit.Listing</TypeName>
@@ -167,5 +167,49 @@
                 </TableRowEntries>
             </TableControl>
         </View>
+        <View>
+            <Name>PSReddit.Message</Name>
+            <ViewSelectedBy>
+                <TypeName>PSReddit.Message</TypeName>
+            </ViewSelectedBy>
+            <TableControl>
+                <TableHeaders>
+                    <TableColumnHeader>
+                        <Width>7</Width>
+                    </TableColumnHeader>
+                    <TableColumnHeader>
+                        <Width>18</Width>
+                    </TableColumnHeader>
+                    <TableColumnHeader>
+                        <Width>29</Width>
+                    </TableColumnHeader>
+                    <TableColumnHeader>
+                    </TableColumnHeader>
+                    <TableColumnHeader>
+                    </TableColumnHeader>
+                </TableHeaders>
+                <TableRowEntries>
+                    <TableRowEntry>
+                        <TableColumnItems>
+                            <TableColumnItem>
+                                <PropertyName>id</PropertyName>
+                            </TableColumnItem>
+                            <TableColumnItem>
+                                <PropertyName>subreddit_name_prefixed</PropertyName>
+                            </TableColumnItem>
+                            <TableColumnItem>
+                                <PropertyName>subject</PropertyName>
+                            </TableColumnItem>
+                            <TableColumnItem>
+                                <PropertyName>author</PropertyName>
+                            </TableColumnItem>
+                            <TableColumnItem>
+                                <PropertyName>score</PropertyName>
+                            </TableColumnItem>
+                        </TableColumnItems>
+                    </TableRowEntry>
+                </TableRowEntries>
+            </TableControl>
+        </View>        
     </ViewDefinitions>
 </Configuration>

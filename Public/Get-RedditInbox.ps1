@@ -11,7 +11,7 @@ function Get-RedditInbox {
         $uri = "https://oAuth.reddit.com/message/$Type"
         $response = Invoke-RedditApi -uri $uri
         $response.data.children | ForEach-Object {
-            $_.data                
+            $_.data | ForEach-Object { $_.PSObject.TypeNames.Insert(0,'PSReddit.Message'); $_ }             
         } 
     }
     
