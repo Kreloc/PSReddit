@@ -20,7 +20,7 @@ function Get-RedditSubsUser {
         Write-Verbose "Sending a uri of $($uri)"
         $response = Invoke-RedditApi -uri $uri
         $response.data.children | ForEach-Object {
-            $_.data
+            $_.data | ForEach-Object { $_.PSObject.TypeNames.Insert(0,'PSReddit.Listing'); $_  }
         }   
     }
     

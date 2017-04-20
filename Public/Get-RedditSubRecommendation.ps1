@@ -15,6 +15,7 @@ function Get-RedditSubRecommendation {
         $Names = $Name -join ','
         $uri = "https://oAuth.reddit.com/api/recommend/sr/$Names"
         $response = Invoke-RedditApi -uri $uri
+        # Don't think formatting is necessary for this response
         $response
     }
     

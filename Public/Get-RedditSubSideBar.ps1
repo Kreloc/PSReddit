@@ -31,7 +31,6 @@ function Get-RedditSubSideBar {
             $uri = "https://oAuth.reddit.com/r/$sub/sidebar"
             Write-Verbose "Sending a uri of $($uri)"
             $response = Invoke-RedditApi -uri $uri
-            # TODO: Add formatting instead of piping to Select Object
             $response
         }
     }
