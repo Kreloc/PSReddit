@@ -1,8 +1,37 @@
 ﻿function New-RedditPost {
-    [CmdletBinding()]
+    <#
+    .SYNOPSIS
+        A function for posting to a subreddit
+    .DESCRIPTION
+        A function for posting to a subreddit
+        Uses the /api/submit endpoint
+    .EXAMPLE
+        New-RedditPost -Title "Powershell Rocks" -Body "This post was made using a PowerShell module" -Subreddit PSRedditFork
+        Creates a text post titled PowerShell Rocks with the text body being what is in the Body parameter to
+        the subreddit PSRedditFork (a private subreddit for testing this module)
+    .EXAMPLE
+        New-RedditPost -Title "PSReddit Module Fork" -Url "https://github.com/Kreloc/PSReddit" -Subreddit PSRedditFork
+        Creates a link post titled PSReddit Module Fork with a url to the repo for this module to the subreddit PSRedditFork
+    .NOTES
+        Need to test getting the content of a text file or someway to get more content into the Body parameter
+    #>
+    [CmdletBinding(DefaultParameterSetName="self")]
     param (
+        # Cannot be more than 300 characters
+        [Parameter(Position=0, Mandatory=$false, ValueFromPipelineByPropertyName=$true)]
+        [String]
         $Title,
+        # Raw markdown of the post to be made if type is self
+        [Parameter(Position=1, Mandatory=$false, ValueFromPipelineByPropertyName=$true, ParameterSetName="self")]
+        [String]        
         $Body,
+        # A url to post to the subreddit
+        [Parameter(Position=1, Mandatory=$false, ValueFromPipelineByPropertyName=$true, ParameterSetName="url")]
+        [String]        
+        $Url,      
+        # The name of the subreddit to submit a post to
+        [Parameter(Position=2, Mandatory=$false, ValueFromPipelineByPropertyName=$true)]
+        [String]         
         $Subreddit
     )
     
@@ -10,14 +39,23 @@
     }
     
     process {
-        $uri = "https://oAuth.reddit.com/api/submit?sr=$Subreddit&text=$Body&title=$Title&kind=self"
+        If($PSCmdlet.ParameterSetName -eq "self")
+        {
+            $uri = "https://oAuth.reddit.com/api/submit?sr=$Subreddit&text=$Body&title=$Title&kind=self"
+        }
+        If($PSCmdlet.ParameterSetName -eq "url")
+        {
+            $uri = "https://oAuth.reddit.com/api/submit?sr=$Subreddit&url=$Url&title=$Title&kind=link"
+        }
         $response = Invoke-RedditApi -uri $uri -Method Post
         If($response.success -eq $True)
         {
-            "Post successfuly made to $Subreddit with a a title of $Title"
+            Write-Verbose "Post successfuly made to $Subreddit with a a title of $Title"
+            $response
         }
         else {
-            "Post was not made to $Subreddit"
+            Write-Verbose "Post was not made to $Subreddit"
+            $response
         }
     }
     
