@@ -45,17 +45,18 @@ function Get-RedditSubAbout {
             }
             Write-Verbose "Sending a uri of $($uri)"
             $response = Invoke-RedditApi -uri $uri
-            # TODO: Add formatting instead of piping to Select Object
             # $response
             # simple change to allow results from other points after /about
             If($type -eq "about")
             {
                 $response | ForEach-Object {
-                    $_.data | Select title, public_description, id, accounts_active, subscribers
+                    # $_.data | Select title, public_description, id, accounts_active, subscribers
+                    $_.data | ForEach-Object {$_.PSObject.TypeNames.Insert(0,'PSReddit.Listing'); $_  }
                 }
             }
             else 
             {
+                # TODO : Add different formatting based on $Type specified
                 $response    
             }
         }
