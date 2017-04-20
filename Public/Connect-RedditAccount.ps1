@@ -52,7 +52,7 @@ param(
             New-item -Force -Path "$configDir" -ItemType File
     
             $guid = [guid]::NewGuid()
-            $URL = "https://www.reddit.com/api/v1/authorize?client_id=$clientID&response_type=code&state=$GUID&redirect_uri=$redirectURI&duration=permanent&scope=identity,history,mysubreddits,read,report,save,submit"
+            $URL = "https://www.reddit.com/api/v1/authorize?client_id=$clientID&response_type=code&state=$GUID&redirect_uri=$redirectURI&duration=permanent&scope=identity,edit,flair,history,modconfig,modflair,modlog,modposts,modwiki,mysubreddits,privatemessages,read,report,save,submit,subscribe,vote,wikiedit,wikiread"
 
             #Display an oAuth login prompt for the user to user authorize our application, returns uri
             Show-OAuthWindow -url $URL
